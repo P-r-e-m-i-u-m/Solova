@@ -9,16 +9,34 @@ jobs:
   daily-merge:
     runs-on: ubuntu-latest
     steps:
+      - name: Pause merge window guard
+        id: merge_pause
+        run: |
+          PAUSE_UNTIL_UTC="2026-05-21T00:00:00Z"
+          NOW_EPOCH=$(date -u +%s)
+          PAUSE_UNTIL_EPOCH=$(date -u -d "$PAUSE_UNTIL_UTC" +%s)
+
+          if [ "$NOW_EPOCH" -lt "$PAUSE_UNTIL_EPOCH" ]; then
+            echo "paused=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Daily Merge is paused until $PAUSE_UNTIL_UTC. No branch, PR, or merge will be created."
+          else
+            echo "paused=false" >> "$GITHUB_OUTPUT"
+            echo "Daily Merge pause expired. Continuing workflow."
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.merge_pause.outputs.paused != 'true'
         with:
           token: ${{ secrets.MY_TOKEN }}
 
       - name: Setup Git
+        if: steps.merge_pause.outputs.paused != 'true'
         run: |
           git config user.email "amanbaba9404522@gmail.com"
           git config user.name "P-r-e-m-i-u-m"
 
       - name: Create branch and commit
+        if: steps.merge_pause.outputs.paused != 'true'
         run: |
           DAY=$(( ($(date +%j) % 14) + 1 ))
           DATE=$(date +%Y-%m-%d)
@@ -1830,6 +1848,7 @@ jobs:
           git push origin $BRANCH
 
       - name: Create and merge PR
+        if: steps.merge_pause.outputs.paused != 'true'
         env:
           GH_TOKEN: ${{ secrets.MY_TOKEN }}
         run: |
