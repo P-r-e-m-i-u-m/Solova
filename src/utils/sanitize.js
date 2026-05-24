@@ -1,7 +1,7 @@
 /**
  * @file sanitize.js
  * @description Input validation and sanitization utilities
- * @updated 2026-05-10
+ * @updated 2026-05-24
  */
 const logger = require("../services/logger");
 
@@ -64,4 +64,4 @@ const validateRequired = (obj, fields) => {
 };
 
 module.exports = { sanitizeString, validateEmail, validateUrl, sanitizeInput, validateRequired };
-// build: 1778410770
+// build: 1779621338
