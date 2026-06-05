@@ -1,7 +1,7 @@
 -- Migration: Add performance indexes
 -- Ticket: PERF-204
 -- Author: P-r-e-m-i-u-m
--- Date: 2026-05-22
+-- Date: 2026-06-05
 -- Impact: Reduces avg query time from 800ms to 45ms
 
 BEGIN;
