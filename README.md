@@ -37,6 +37,7 @@ flowchart LR
   Actions["GitHub Actions"] --> Docs["Engineering docs"]
   Actions --> Releases["Weekly releases"]
   Services --> GraphqlGW["GraphQL gateway"]
+  Services --> ImageProcessing["Image processing"]
 ```
 
 ## Tech Stack
