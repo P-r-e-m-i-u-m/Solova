@@ -57,7 +57,7 @@ jobs:
               ("Services", "WebhookHandler", "Webhook handler"),
           ]
 
-          match = re.search(r'(## System Snapshot\n```mermaid\n)(.*?)(\n```)', content, re.S)
+          match = re.search(r'(## System Snapshot\n\n```mermaid\n)(.*?)(\n```)', content, re.S)
           if not match:
               print("System Snapshot block not found, skipping.")
               sys.exit(0)
