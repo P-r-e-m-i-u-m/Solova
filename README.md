@@ -42,6 +42,7 @@ flowchart LR
   Actions --> CronScheduler["Cron scheduler"]
   Services --> AuditLog["Audit logger"]
   Services --> PdfGenerator["PDF generator"]
+  Postgres --> ReadReplica["Read replica"]
 ```
 
 ## Tech Stack
