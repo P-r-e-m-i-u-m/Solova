@@ -47,6 +47,7 @@ flowchart LR
   Services --> Notifications["Notification service"]
   LoadBalancer --> CDN["CDN"]
   Services --> ComplianceLog["Compliance logger"]
+  Middleware --> SecretsManager["Secrets manager"]
 ```
 
 ## Tech Stack
