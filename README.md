@@ -54,6 +54,7 @@ flowchart LR
   Queue --> BackupJob["Backup job"]
   Services --> EmailService["Email service"]
   Services --> WebhookHandler["Webhook handler"]
+  Middleware --> ServiceMesh["Service mesh"]
 ```
 
 ## Tech Stack
